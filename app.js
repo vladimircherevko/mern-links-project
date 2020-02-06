@@ -1,6 +1,6 @@
 const express = require("express");
 // const config = require("config");
-// const path = require("path");
+const path = require("path");
 // const mongoose = require("mongoose");
 // const authRoute = require("./routes/authRoute");
 // const linkRoute = require("./routes/linkRoute");
@@ -18,15 +18,15 @@ const app = express();
 // app.use("/t", redirectRoute);
 
 // if (process.env.NODE_ENV === "production") {
-// app.use("/", express.static(path.join(__dirname, "client", "build")));
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-// });
+app.use("/", express.static(path.join(__dirname, "client", "build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
 // }
 
-app.get("/", function(req, res) {
-  res.send(`<h1>Main page</h1><p>Port: ${PORT}</p>`);
-});
+// app.get("/", function(req, res) {
+//   res.send(`<h1>Main page</h1><p>Port: ${PORT}</p>`);
+// });
 
 app.listen(PORT, () => console.log("Start on port:", PORT));
 // mongoose // подключение mongoBD
