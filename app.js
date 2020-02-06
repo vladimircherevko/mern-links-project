@@ -1,7 +1,7 @@
 const express = require("express");
-// const config = require("config");
+const config = require("config");
 const path = require("path");
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 // const authRoute = require("./routes/authRoute");
 // const linkRoute = require("./routes/linkRoute");
 // const redirectRoute = require("./routes/redirectRoute");
@@ -24,19 +24,15 @@ app.get("*", (req, res) => {
 });
 // }
 
-// app.get("/", function(req, res) {
-//   res.send(`<h1>Main page</h1><p>Port: ${PORT}</p>`);
-// });
-
-app.listen(PORT, () => console.log("Start on port:", PORT));
-// mongoose // подключение mongoBD
-//   .connect(config.get("mongoUri"), {
-//     useUnifiedTopology: true,
-//     useCreateIndex: true,
-//     useNewUrlParser: true
-//   })
-//   .then(() => app.listen(PORT, () => console.log("Start on port:", PORT)))
-//   .catch(e => {
-//     console.log("Promise failed: ", e);
-//     process.exit(1);
-//   });
+// app.listen(PORT, () => console.log("Start on port:", PORT));
+mongoose // подключение mongoBD
+  .connect(config.get("mongoUri"), {
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useNewUrlParser: true
+  })
+  .then(() => app.listen(PORT, () => console.log("Start on port:", PORT)))
+  .catch(e => {
+    console.log("Promise failed: ", e);
+    process.exit(1);
+  });
